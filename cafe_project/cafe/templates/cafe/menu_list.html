@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cafe Menu</title>
+</head>
+<body>
+
+<h1>Cafe Menu</h1>
+
+{% for item in menu_items %}
+
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.description }}</p>
+    <p>₹{{ item.price }}</p>
+
+{% endfor %}
+
+</body>
+</html>
