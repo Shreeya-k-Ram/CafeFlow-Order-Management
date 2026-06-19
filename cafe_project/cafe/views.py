@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import MenuItem
+from .forms import OrderForm
 
 # Create your views here.
 def menu_list(request):
@@ -9,5 +10,23 @@ def menu_list(request):
         request,
         'cafe/menu_list.html',
         {'menu_items': menu_items}
+    )
+
+def order_view(request):
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/order/')
+
+    else:
+        form = OrderForm()
+
+    return render(
+        request,
+        'cafe/order_form.html',
+        {'form': form}
     )
 

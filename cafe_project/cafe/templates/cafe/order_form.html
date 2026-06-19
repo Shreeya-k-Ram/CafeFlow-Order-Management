@@ -1,0 +1,12 @@
+<html>
+<body>
+    <h1>Place Order</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Place Order</button>
+    </form>
+
+</body>
+</html>
