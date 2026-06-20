@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>Customer Orders</h1>
+    {% for order in orders %}
+
+        <h2>{{ order.customer_name }}</h2>
+        <p><strong>Menu Item:</strong> {{ order.menu_item }}</p>
+        <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+        <hr>
+        
+    {% endfor %}
+
+</body>
+</html>
+
