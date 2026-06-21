@@ -11,7 +11,11 @@ def home(request) :
     )
 
 def menu_list(request):
-    menu_items = MenuItem.objects.all()
+    search_query = request.GET.get('search')
+    if search_query:
+        menu_items = MenuItem.objects.filter(name__icontains= search_query)
+    else :
+        menu_items = MenuItem.objects.all()
 
     return render(
         request,
