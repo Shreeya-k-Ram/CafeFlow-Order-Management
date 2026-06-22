@@ -58,7 +58,7 @@ def order_view(request):
     )
 
 def order_list(request) :
-    orders = Order.objects.all()
+    orders = Order.objects.order_by('created_at')
 
     return render(
         request, 
