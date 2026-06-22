@@ -30,16 +30,18 @@ class Order(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
     STATUS_CHOICES = [
-        ("Pending", "Pending"),
-        ("Preparing", "Preparing"),
-        ("Completed", "Completed"),
+        ('Pending', 'Pending'),
+        ('Preparing', 'Preparing'),
+        ('Ready', 'Ready'),
+        ('Delivered', 'Delivered'),
     ]
 
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default="Pending"
+        default='Pending'
     )
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

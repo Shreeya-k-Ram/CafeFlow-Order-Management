@@ -29,6 +29,14 @@
     <p><strong>Category:</strong> {{ item.category.name }}</p>
     <p>{{ item.description }}</p>
     <p>Rs. {{ item.price }}</p>
+
+    <p><strong>Status:</strong>
+        {% if item.available %}
+            Available 
+        {% else %}
+            Out of Stock 
+        {% endif %}
+    </p>
     <hr>
 
 {% endfor %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import MenuItem, Order
+from .models import MenuItem, Order, Category
 from .forms import OrderForm
 from django.contrib import messages
 
@@ -11,16 +11,31 @@ def home(request) :
     )
 
 def menu_list(request):
+    menu_items = MenuItem.objects.all()
+
     search_query = request.GET.get('search')
+
     if search_query:
-        menu_items = MenuItem.objects.filter(name__icontains= search_query)
-    else :
-        menu_items = MenuItem.objects.all()
+        menu_items = menu_items.filter(
+            name__icontains=search_query
+        )
+
+    category_id = request.GET.get('category')
+
+    if category_id:
+        menu_items = menu_items.filter(
+            category_id=category_id
+        )
+
+    categories = Category.objects.all()
 
     return render(
         request,
         'cafe/menu_list.html',
-        {'menu_items': menu_items}
+        {
+            'menu_items': menu_items,
+            'categories': categories
+        }
     )
 
 def order_view(request):
