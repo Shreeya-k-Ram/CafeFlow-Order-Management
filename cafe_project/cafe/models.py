@@ -44,5 +44,8 @@ class Order(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def total_price(self):
+        return self.menu_item.price * self.quantity
+
     def __str__(self):
         return f"{self.customer_name} - {self.menu_item.name}"

@@ -28,7 +28,6 @@
     <h3>{{ item.name }}</h3>
     <p><strong>Category:</strong> {{ item.category.name }}</p>
     <p>{{ item.description }}</p>
-    <p>Rs. {{ item.price }}</p>
 
     <p><strong>Status:</strong>
         {% if item.available %}
@@ -37,6 +36,8 @@
             Out of Stock 
         {% endif %}
     </p>
+
+    <p><strong>Price:</strong>Rs. {{ item.price }}</p>
     <hr>
 
 {% endfor %}
