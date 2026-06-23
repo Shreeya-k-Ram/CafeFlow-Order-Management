@@ -66,3 +66,22 @@ def order_list(request) :
         {'orders' : orders}
     )
 
+def dashboard(request):
+    total_orders = Order.objects.count()
+    pending_orders = Order.objects.filter(status='Pending').count()
+    preparing_orders = Order.objects.filter(status='Preparing').count()
+    ready_orders = Order.objects.filter(status='Ready').count()
+    delivered_orders = Order.objects.filter(status='Delivered').count()
+
+    return render(
+        request,
+        'cafe/dashboard.html',
+        {
+            'total_orders': total_orders,
+            'pending_orders': pending_orders,
+            'preparing_orders': preparing_orders,
+            'ready_orders': ready_orders,
+            'delivered_orders': delivered_orders
+        }
+    )
+
