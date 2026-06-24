@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import MenuItem, Order, Category
 from .forms import OrderForm
 from django.contrib import messages
+from django.db.models import Sum
 
 # Create your views here.
 def home(request) :
@@ -73,6 +74,21 @@ def dashboard(request):
     ready_orders = Order.objects.filter(status='Ready').count()
     delivered_orders = Order.objects.filter(status='Delivered').count()
 
+    top_item = None
+    items = {}
+
+    for order in Order.objects.all():
+
+        item_name = order.menu_item.name
+
+        if item_name not in items:
+            items[item_name] = 0
+
+        items[item_name] += order.quantity
+
+        if items:
+            top_item = max(items, key=items.get)
+
     return render(
         request,
         'cafe/dashboard.html',
@@ -81,7 +97,8 @@ def dashboard(request):
             'pending_orders': pending_orders,
             'preparing_orders': preparing_orders,
             'ready_orders': ready_orders,
-            'delivered_orders': delivered_orders
+            'delivered_orders': delivered_orders,
+            'top_item': top_item
         }
     )
 
