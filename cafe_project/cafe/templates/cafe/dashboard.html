@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>CafeFlow Dashboard</title>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 15px;
+            margin: 10px;
+            width: 180px;
+            text-align: center;
+        }
+
+        .dashboard-container{
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+    </style>
+</head>
+
 <body>
     <h1>CafeFlow Dashboard</h1>
-    <p>Total Orders: {{ total_orders }}</p>
-    <p>Pending Orders: {{ pending_orders }}</p>
-    <p>Preparing Orders: {{ preparing_orders }}</p>
-    <p>Ready Orders: {{ ready_orders }}</p>
-    <p>Delivered Orders: {{ delivered_orders }}</p>
+    <div class="dashboard-container">
+
+        <div>
+            <h3>Total Orders</h3>
+            <p>{{ total_orders }}</p>
+        </div>
+    
+        <div>
+            <h3>Pending Orders</h3>
+            <p>{{ pending_orders }}</p>
+        </div>
+    
+        <div>
+            <h3>Preparing Orders</h3>
+            <p>{{ preparing_orders }}</p>
+        </div>
+    
+        <div>
+            <h3>Ready Orders</h3>
+            <p>{{ ready_orders }}</p>
+        </div>
+    
+        <div>
+            <h3>Delivered Orders</h3>
+            <p>{{ delivered_orders }}</p>
+        </div>
+   
+    </div>
 
 </body>
 </html>
