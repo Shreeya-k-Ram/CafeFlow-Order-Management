@@ -2,45 +2,62 @@
 <html>
 <head>
     <title>Cafe Menu</title>
+    <style>
+        .navbar {
+            padding: 10px;
+            background-color: lightgray;
+        }
+        
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+    </style>
+    
 </head>
 <body>
 
-<h1>Cafe Menu</h1>
+    <div class="navbar">
+        <a href="/menu/">Menu</a>
+        <a href="/order/">Order</a>
+        <a href="/orders/">Orders</a>
+        <a href="/dashboard/">Dashboard</a>
+    </div>    
+    <hr>
 
-<form method="GET">
+    <h1>Cafe Menu</h1>
 
-   <input type="text" name="search" placeholder="Search Menu Item">
-   <button type="submit">Search</button>
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search Menu Item">
+        <button type="submit">Search</button>
+    </form>
+    <hr>
 
-</form>
-<hr>
-
-{% if menu_items %}
+    {% if menu_items %}
     {% for item in menu_items %}
         <p>{{ item.name }}</p>
     {% endfor %}
-{% else %}
-    <p>No menu items found.</p>
-{% endif %}
+    {% else %}
+        <p>No menu items found.</p>
+    {% endif %}
 
-{% for item in menu_items %}
+    {% for item in menu_items %}
 
-    <h3>{{ item.name }}</h3>
-    <p><strong>Category:</strong> {{ item.category.name }}</p>
-    <p>{{ item.description }}</p>
+        <h3>{{ item.name }}</h3>
+        <p><strong>Category:</strong> {{ item.category.name }}</p>
+        <p>{{ item.description }}</p>
 
-    <p><strong>Status:</strong>
-        {% if item.available %}
-            Available 
-        {% else %}
-            Out of Stock 
-        {% endif %}
-    </p>
+        <p><strong>Status:</strong>
+            {% if item.available %}
+                Available 
+            {% else %}
+                Out of Stock 
+            {% endif %}
+        </p>
 
-    <p><strong>Price:</strong>Rs. {{ item.price }}</p>
-    <hr>
-
-{% endfor %}
+        <p><strong>Price:</strong>Rs. {{ item.price }}</p>
+        <hr>
+    {% endfor %}
 
 </body>
 </html>

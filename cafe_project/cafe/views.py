@@ -68,6 +68,7 @@ def order_list(request) :
     )
 
 def dashboard(request):
+    recent_orders = Order.objects.order_by('-created_at')[:4]
     total_orders = Order.objects.count()
     pending_orders = Order.objects.filter(status='Pending').count()
     preparing_orders = Order.objects.filter(status='Preparing').count()
@@ -93,6 +94,7 @@ def dashboard(request):
         request,
         'cafe/dashboard.html',
         {
+            'recent_orders': recent_orders,
             'total_orders': total_orders,
             'pending_orders': pending_orders,
             'preparing_orders': preparing_orders,

@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        .navbar {
+            padding: 10px;
+            background-color: lightgray;
+        }
+        
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+    </style>
 <body>
+
+    <div class="navbar">
+        <a href="/menu/">Menu</a>
+        <a href="/order/">Order</a>
+        <a href="/orders/">Orders</a>
+        <a href="/dashboard/">Dashboard</a>
+    </div>
+    
+    <hr>
+
     <h1>Place Order</h1>
 
     {% if messages %}

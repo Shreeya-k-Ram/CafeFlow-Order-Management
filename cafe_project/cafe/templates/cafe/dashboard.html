@@ -3,6 +3,16 @@
 <head>
     <title>CafeFlow Dashboard</title>
     <style>
+        .navbar {
+            padding: 10px;
+            background-color: lightgray;
+        }
+        
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
         div {
             border: 1px solid black;
             padding: 15px;
@@ -20,6 +30,15 @@
 </head>
 
 <body>
+
+    <div class="navbar">
+        <a href="/menu/">Menu</a>
+        <a href="/order/">Order</a>
+        <a href="/orders/">Orders</a>
+        <a href="/dashboard/">Dashboard</a>
+    </div>    
+    <hr>
+
     <h1>CafeFlow Dashboard</h1>
     <div class="dashboard-container">
 
@@ -54,6 +73,19 @@
         </div>
    
     </div>
+
+    <h2>Recent Orders</h2>
+    <ul>
+        {% for order in recent_orders %}
+            <li>
+                {{ order.customer_name }}
+                -
+                {{ order.menu_item }}
+                -
+                {{ order.quantity }}
+            </li>
+       {% endfor %}
+    </ul>
 
 </body>
 </html>
