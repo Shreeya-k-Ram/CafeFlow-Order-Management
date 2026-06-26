@@ -60,6 +60,11 @@ def order_view(request):
 
 def order_list(request) :
     orders = Order.objects.order_by('created_at')
+    status = request.GET.get('status')
+    orders = Order.objects.all()
+
+    if status:
+        orders = orders.filter(status=status)
 
     return render(
         request, 
@@ -90,6 +95,10 @@ def dashboard(request):
         if items:
             top_item = max(items, key=items.get)
 
+        total_revenue = 0
+        for order in Order.objects.all():
+            total_revenue += order.total_price()
+
     return render(
         request,
         'cafe/dashboard.html',
@@ -100,7 +109,8 @@ def dashboard(request):
             'preparing_orders': preparing_orders,
             'ready_orders': ready_orders,
             'delivered_orders': delivered_orders,
-            'top_item': top_item
+            'top_item': top_item,
+            'total_revenue': total_revenue
         }
     )
 
