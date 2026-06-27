@@ -1,32 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Cafe Menu</title>
-    <style>
-        .navbar {
-            padding: 10px;
-            background-color: lightgray;
-        }
-        
-        .navbar a {
-            margin-right: 15px;
-            text-decoration: none;
-        }
-    </style>
-    
-</head>
-<body>
+{% extends 'cafe/base.html' %}
+{% block content %}
 
-    <div class="navbar">
-        <a href="/menu/">Menu</a>
-        <a href="/order/">Order</a>
-        <a href="/orders/">Orders</a>
-        <a href="/dashboard/">Dashboard</a>
-    </div>    
-    <hr>
-
-    <h1>Cafe Menu</h1>
-
+<h1>Cafe Menu</h1>
     <form method="GET">
         <input type="text" name="search" placeholder="Search Menu Item">
         <button type="submit">Search</button>
@@ -58,6 +33,4 @@
         <p><strong>Price:</strong>Rs. {{ item.price }}</p>
         <hr>
     {% endfor %}
-
-</body>
-</html>
+{% endblock %}

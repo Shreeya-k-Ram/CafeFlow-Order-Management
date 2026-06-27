@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CafeFlow</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin:20px;
+        }
+
+        .navbar{
+            padding:10px;
+            background-color:lightgray;
+        }
+
+        .navbar a{
+            margin-right:15px;
+            text-decoration:none;
+        }
+
+        div{
+            border:1px solid black;
+            padding:15px;
+            margin:10px;
+        }
+
+        h3{
+            margin:0;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div class="navbar">
+        <a href="/menu/" {% if request.path == "/menu/" %}style="font-weight:bold;"{% endif %}>Menu</a>
+        <a href="/order/" {% if request.path == "/order/" %}style="font-weight:bold;"{% endif %}>Order</a>
+        <a href="/orders/" {% if request.path == "/orders/" %}style="font-weight:bold;"{% endif %}>Orders</a>
+        <a href="/dashboard/" {% if request.path == "/dashboard/" %}style="font-weight:bold;"{% endif %}>Dashboard</a>
+    </div>
+
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

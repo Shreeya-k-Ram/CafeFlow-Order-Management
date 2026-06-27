@@ -1,45 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CafeFlow Dashboard</title>
-    <style>
-        .navbar {
-            padding: 10px;
-            background-color: lightgray;
-        }
-        
-        .navbar a {
-            margin-right: 15px;
-            text-decoration: none;
-        }
-        
-        div {
-            border: 1px solid black;
-            padding: 15px;
-            margin: 10px;
-            width: 180px;
-            text-align: center;
-        }
+{% extends 'cafe/base.html' %}
+{% block content %}
 
-        .dashboard-container{
-            display: flex;
-            flex-wrap: wrap;
-
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="navbar">
-        <a href="/menu/">Menu</a>
-        <a href="/order/">Order</a>
-        <a href="/orders/">Orders</a>
-        <a href="/dashboard/">Dashboard</a>
-    </div>    
-    <hr>
-
-    <h1>CafeFlow Dashboard</h1>
+<h1>CafeFlow Dashboard</h1>
     <div class="dashboard-container">
 
         <div>
@@ -92,5 +54,4 @@
        {% endfor %}
     </ul>
 
-</body>
-</html>
+{% endblock %}

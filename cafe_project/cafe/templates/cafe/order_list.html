@@ -1,36 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <style>
-        .navbar {
-            padding: 10px;
-            background-color: lightgray;
-        }
-        
-        .navbar a {
-            margin-right: 15px;
-            text-decoration: none;
-        }
-    </style>
-<body>
-
-    <a href="/orders/">All</a> |
-    <a href="/orders/?status=Pending">Pending</a> |
-    <a href="/orders/?status=Preparing">Preparing</a> |
-    <a href="/orders/?status=Ready">Ready</a> |
-    <a href="/orders/?status=Delivered">Delivered</a>
-
-    <hr>
-
-    <div class="navbar">
-        <a href="/menu/">Menu</a>
-        <a href="/order/">Order</a>
-        <a href="/orders/">Orders</a>
-        <a href="/dashboard/">Dashboard</a>
-    </div>
-    
-    <hr>
-
-    <h1>Customer Orders</h1>
+{% extends 'cafe/base.html' %}
+{% block content %}
+<h1>Customer Orders</h1>
     {% for order in orders %}
 
         <h2>{{ order.customer_name }}</h2>
@@ -44,6 +14,4 @@
         
     {% endfor %}
 
-</body>
-</html>
-
+{% endblock %}
