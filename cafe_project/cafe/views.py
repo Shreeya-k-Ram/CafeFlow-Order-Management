@@ -60,8 +60,15 @@ def order_view(request):
 
 def order_list(request) :
     orders = Order.objects.order_by('created_at')
-    status = request.GET.get('status')
     orders = Order.objects.all()
+
+    search_query = request.GET.get('search')
+    orders = Order.objects.all()
+
+    if search_query:
+        orders = orders.filter(customer_name__icontains=search_query)
+
+    status = request.GET.get('status')
 
     if status:
         orders = orders.filter(status=status)
