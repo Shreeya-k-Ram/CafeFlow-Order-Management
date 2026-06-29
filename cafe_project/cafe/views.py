@@ -14,7 +14,7 @@ def home(request) :
 def menu_list(request):
     menu_items = MenuItem.objects.all()
 
-    search_query = request.GET.get('search')
+    search_query = request.GET.get('search', '')
 
     if search_query:
         menu_items = menu_items.filter(
@@ -35,6 +35,7 @@ def menu_list(request):
         'cafe/menu_list.html',
         {
             'menu_items': menu_items,
+            'search_query': search_query,
             'categories': categories
         }
     )
@@ -63,7 +64,7 @@ def order_list(request) :
     orders = Order.objects.all()
 
     search_query = request.GET.get('search')
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-id')
 
     if search_query:
         orders = orders.filter(customer_name__icontains=search_query)

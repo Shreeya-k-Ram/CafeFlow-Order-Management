@@ -1,9 +1,10 @@
 {% extends 'cafe/base.html' %}
 {% block content %}
 <h1>Customer Orders</h1>
-
+    
+    <h2>Total Orders: {{ orders|length }}</h2>
     <form method="GET">
-        <input type="text" name="search" placeholder="Search Customer">
+        <input type="text" name="search" placeholder="Search Customer..." value="{{ search_query }}" autofocus>
         <button type="submit">Search</button>
     </form>
 
@@ -16,18 +17,17 @@
             <p><strong>Quantity:</strong> {{ order.quantity }}</p>
             <p><strong>Ordered At:</strong> {{ order.created_at }}</p>
             <p><strong>Total Price:</strong> Rs. {{ order.total_price }}</p>
-            {% if order.status == "Pending" %}
-                <span style="color:red;">Pending</span>
-
-            {% elif order.status == "Preparing" %}
-                <span style="color:orange;">Preparing</span>
-
-            {% elif order.status == "Ready" %}
-                <span style="color:green;">Ready</span>
-
-            {% else %}
-                <span style="color:blue;">Delivered</span>
-            {% endif %}
+            <p><strong>Status:</strong>
+                {% if order.status == "Pending" %}
+                    <span style="color:red;">Pending</span>
+                {% elif order.status == "Preparing" %}
+                    <span style="color:orange;">Preparing</span>
+                {% elif order.status == "Ready" %}
+                    <span style="color:green;">Ready</span>
+                {% else %}
+                    <span style="color:blue;">Delivered</span>
+                {% endif %}
+            </p>
 
             <hr>
 
