@@ -31,6 +31,13 @@
 
             <hr>
 
+            {% if order.status != "Delivered" %}
+                <a href="{% url 'next_status' order.id %}" class="btn-next"
+                    onclick="return confirm('Are you sure you want to update the order status?');">
+                    Next Status
+                </a>
+            {% endif %}
+
         {% endfor %}
     {% else %}
          <h3>No orders found!</h3>

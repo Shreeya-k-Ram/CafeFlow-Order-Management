@@ -52,11 +52,31 @@
         h3{
             margin:0;
         }
+
+        .btn-next {
+            background-color: green;
+            color: white;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-next:hover {
+            background-color: darkgreen;
+        }
     </style>
 
 </head>
 
 <body>
+
+    {% if messages %}
+        {% for message in messages %}
+              <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     
     <div class="navbar">
         <a href="/menu/" {% if request.path == "/menu/" %}style="font-weight:bold;"{% endif %}>Menu</a>

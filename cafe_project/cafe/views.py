@@ -122,3 +122,22 @@ def dashboard(request):
         }
     )
 
+def next_status(request, order_id):
+    order = Order.objects.get(id=order_id)
+
+    if order.status == "Pending":
+        order.status = "Preparing"
+
+    elif order.status == "Preparing":
+        order.status = "Ready"
+
+    elif order.status == "Ready":
+        order.status = "Delivered"
+
+    order.save()
+
+    messages.success(request, "Order status updated successfully.")
+
+    return redirect("/orders/")
+
+
