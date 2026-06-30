@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import MenuItem, Order, Category
 from .forms import OrderForm
 from django.contrib import messages
@@ -83,10 +83,10 @@ def order_list(request) :
 def dashboard(request):
     recent_orders = Order.objects.order_by('-created_at')[:4]
     total_orders = Order.objects.count()
-    pending_orders = Order.objects.filter(status='Pending').count()
-    preparing_orders = Order.objects.filter(status='Preparing').count()
-    ready_orders = Order.objects.filter(status='Ready').count()
-    delivered_orders = Order.objects.filter(status='Delivered').count()
+    pending_orders = Order.objects.filter(status="Pending").count()
+    preparing_orders = Order.objects.filter(status="Preparing").count()
+    ready_orders = Order.objects.filter(status="Ready").count()
+    delivered_orders = Order.objects.filter(status="Delivered").count()
 
     top_item = None
     items = {}
@@ -111,14 +111,14 @@ def dashboard(request):
         request,
         'cafe/dashboard.html',
         {
-            'recent_orders': recent_orders,
-            'total_orders': total_orders,
-            'pending_orders': pending_orders,
-            'preparing_orders': preparing_orders,
-            'ready_orders': ready_orders,
-            'delivered_orders': delivered_orders,
-            'top_item': top_item,
-            'total_revenue': total_revenue
+            "recent_orders": recent_orders,
+            "total_orders": total_orders,
+            "pending_orders": pending_orders,
+            "preparing_orders": preparing_orders,
+            "ready_orders": ready_orders,
+            "delivered_orders": delivered_orders,
+            "top_item": top_item,
+            "total_revenue": total_revenue
         }
     )
 
@@ -140,4 +140,9 @@ def next_status(request, order_id):
 
     return redirect("/orders/")
 
+def delete_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    order.delete()
+    messages.success(request, "Order deleted successfully.")
+    return redirect("orders")
 
