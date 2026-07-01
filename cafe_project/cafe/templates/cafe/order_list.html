@@ -11,38 +11,40 @@
     <hr>
     {% if orders %}
         {% for order in orders %}
+            <div class="order-card">
 
-            <h2>{{ order.customer_name }}</h2>
-            <p><strong>Menu Item:</strong> {{ order.menu_item }}</p>
-            <p><strong>Quantity:</strong> {{ order.quantity }}</p>
-            <p><strong>Ordered At:</strong> {{ order.created_at }}</p>
-            <p><strong>Total Price:</strong> Rs. {{ order.total_price }}</p>
-            <p><strong>Status:</strong>
-                {% if order.status == "Pending" %}
-                    <span style="color:red;">Pending</span>
-                {% elif order.status == "Preparing" %}
-                    <span style="color:orange;">Preparing</span>
-                {% elif order.status == "Ready" %}
-                    <span style="color:green;">Ready</span>
-                {% else %}
-                    <span style="color:blue;">Delivered</span>
+                <h2>{{ order.customer_name }}</h2>
+                <p><strong>Menu Item:</strong> {{ order.menu_item }}</p>
+                <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+                <p><strong>Ordered At:</strong> {{ order.created_at }}</p>
+                <p><strong>Total Price:</strong> Rs. {{ order.total_price }}</p>
+                <p><strong>Status:</strong>
+                    {% if order.status == "Pending" %}
+                        <span style="color:red;">Pending</span>
+                    {% elif order.status == "Preparing" %}
+                        <span style="color:orange;">Preparing</span>
+                    {% elif order.status == "Ready" %}
+                        <span style="color:green;">Ready</span>
+                    {% else %}
+                        <span style="color:blue;">Delivered</span>
+                    {% endif %}
+                </p>
+
+                <hr>
+
+                {% if order.status != "Delivered" %}
+                    <a href="{% url 'next_status' order.id %}" class="btn-next"
+                        onclick="return confirm('Are you sure you want to update the order status?');">
+                        Next Status
+                    </a>
+
+                    <a href="{% url 'delete_order' order.id %}" class="btn-delete"
+                        onclick="return confirm('Are you sure you want to delete this order?');">
+                        Delete
+                    </a>
                 {% endif %}
-            </p>
-
-            <hr>
-
-            {% if order.status != "Delivered" %}
-                <a href="{% url 'next_status' order.id %}" class="btn-next"
-                   onclick="return confirm('Are you sure you want to update the order status?');">
-                   Next Status
-                </a>
-
-                <a href="{% url 'delete_order' order.id %}" class="btn-delete"
-                   onclick="return confirm('Are you sure you want to delete this order?');">
-                   Delete
-                </a>
-            {% endif %}
-
+      
+            </div>
         {% endfor %}
     {% else %}
          <h3>No orders found!</h3>

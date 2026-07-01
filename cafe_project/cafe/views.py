@@ -146,3 +146,4 @@ def delete_order(request, order_id):
     messages.success(request, "Order deleted successfully.")
     return redirect("orders")
 
+
